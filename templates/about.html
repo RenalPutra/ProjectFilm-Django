@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block header %}
+<div class="col-lg-8 text-center mx-auto my-auto">
+  <h1 class="text-white">About Us</h1>
+  <p class="lead mb-4 text-white opacity-8">
+    Informasi singkat tentang creator website  </p>
+  
+</div>
+
+{% endblock header %}
+
+{% block konten %}
+
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+  <!-- START Testimonials w/ user image & text & info -->
+  <section class="py-sm-7 py-5 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <div class="mt-n8 mt-md-n9 text-center">
+            <img
+              class="avatar avatar-xxl shadow-xl position-relative z-index-2"
+              src="{% static 'kit/img/itsme.jpeg' %}"
+              alt="bruce"
+              loading="lazy"
+            />
+          </div>
+          <div class="row py-5">
+            <div
+              class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto"
+            >
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <h3 class="mb-0">Raenald Syaputra</h3>
+                <div class="d-block"></div>
+              </div>
+
+              <p class="text-lg mb-0">
+                Selama dalam kurun waktu 2 tahun Raenald atau yang biasa di sapa renal
+                berhasil menguasai berbagai bidang dalam hal informatika, hingga kini ia masih
+                fokus dalam belajar untuk masa depannya
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END Testimonials w/ user image & text & info -->
+  <!-- START Blogs w/ 4 cards w/ image & text & link -->
+ 
+  <!-- END Blogs w/ 4 cards w/ image & text & link -->
+</div>
+{% endblock konten %}

@@ -1,0 +1,96 @@
+{% extends 'back/baseAdmin.html' %} {% load static %} {% block konten %}
+<a class="btn btn-success w-auto m-5" href="{% url 'addArtikel' %}"
+  >+ Add Artikel</a
+>
+<div class="card card-body blur shadow-blur mx-3">
+  <div class="table-responsive">
+    <table class="table align-items-center mb-0">
+      <thead>
+        <tr>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-7">
+            Penulis
+          </th>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-7">
+            Gambar
+          </th>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-7">
+            Judul
+          </th>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-7">
+            Konten
+          </th>
+          <th
+            class="text-center text-uppercase text-xxs font-weight-bolder opacity-7"
+          >
+            Date
+          </th>
+          <th
+            class="text-center text-uppercase text-xxs font-weight-bolder opacity-7"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in artics %}
+
+        <tr>
+          <td>
+            <div class="d-flex flex-column justify-content-center">
+              <h6 class="mb-0 font-weight-normal text-sm">{{a.nama}}</h6>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex px-2 py-1">
+              <div>
+                <img
+                  src="{{a.gambar}}"
+                  class="avatar avatar-sm me-3"
+                  alt="avatar image"
+                />
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex flex-column justify-content-center">
+              <h6 class="mb-0 font-weight-normal text-sm">{{a.judul}}</h6>
+            </div>
+          </td>
+
+          <td>
+            <p
+              class="text-sm font-weight-normal mb-0"
+              style="
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              "
+            >
+              {{a.deskripsi}}
+            </p>
+          </td>
+          <td class="text-center">
+            <span class="badge badge-dot me-4">
+              <i class="bg-info"></i>
+              <span class="text-dark text-xs">{{a.date}}</span>
+            </span>
+          </td>
+          <td class="align-middle text-center text-sm">
+            <a
+              class="btn btn-warning w-auto me-2"
+              href="{% url 'editArtikel' a.id %}"
+              >Update</a
+            >
+            <a
+              class="btn btn-danger w-auto me-2"
+              href="{% url 'deleteArtikel' a.id %}"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock konten %}

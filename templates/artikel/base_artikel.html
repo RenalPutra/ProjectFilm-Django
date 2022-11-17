@@ -1,0 +1,337 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="{% static 'kit/img/apple-icon.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'kit/img/favicon.png' %}"
+    />
+
+    <title>BIG MOVIES</title>
+    <!--     Fonts and icons     -->
+
+    <!--cyborg-->
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
+    />
+    <!-- Nucleo Icons -->
+    <link href="{% static 'kit/css/nucleo-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'kit/css/nucleo-svg.css' %}" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/42d5adcbca.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="{% static 'kit/css/material-kit.css' %}?v=3.0.4"
+      rel="stylesheet"
+    />
+
+    <link href="{% static 'kit/css/styleku.css' %}" rel="stylesheet" />
+
+    <!-- Flex Artikel -->
+  </head>
+
+  <body class="about-us bg-gray-200">
+    <nav
+      class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand text-white"
+          href="{% url 'main'%}"
+          rel="tooltip"
+          title="Designed and Coded by Creative Tim"
+          data-placement="bottom"
+          target="_blank"
+        >
+          <h2 class="text-white">BIG MOVIES</h2>
+        </a>
+        <button
+          class="navbar-toggler shadow-none ms-2"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navigation"
+          aria-controls="navigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon mt-2">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </span>
+        </button>
+        <div
+          class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5"
+          id="navigation"
+        >
+          <ul class="navbar-nav navbar-nav-hover ms-auto">
+            <li class="nav-item dropdown dropdown-hover mx-2 ms-lg-6">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuPages8"
+                href="{% url 'main'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
+                Home
+              </a>
+            </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuPages8"
+                href="{% url 'trending'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">star</i>
+                Trending
+              </a>
+            </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuPages8"
+                href="{% url 'coming'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">movie</i>
+                Coming
+              </a>
+            </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuPages8"
+                href="{% url 'top'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">stars</i>
+                Top
+              </a>
+            </li>
+
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuBlocks"
+                href="{% url 'artikels'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">article</i>
+                Article
+              </a>
+            </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuBlocks"
+                href="{% url 'about'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">info</i>
+                About
+              </a>
+            </li>
+            {% if request.user.is_anonymous %}
+
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuDocs"
+                href="{% url 'login'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">login</i>
+                Login
+              </a>
+            </li>
+
+            {% else %}
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuDocs"
+                href="{% url 'dashboard'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">person</i>
+                {{user}}
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      <form method="post" action="{% url 'search' %} ">
+        {% csrf_token %}
+        <div class="row collapse navbar-collapse">
+          <div class="ms-md-auto d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label text-white">Searching Film</label>
+              <input
+                type="text"
+                name="movieName"
+                class="form-control text-white"
+              />
+            </div>
+          </div>
+        </div>
+        <button type="submit" hidden class="btn btn-white">Cari</button>
+      </form>
+    </nav>
+
+    {% block header %}{% endblock header %} {% block konten %}
+    <!---->
+    {% endblock konten%}
+
+    <!--   Core JS Files   -->
+    <script
+      src="{% static 'kit/js/core/popper.min.js' %}"
+      type="text/javascript"
+    ></script>
+    <script
+      src="{% static 'kit/js/core/bootstrap.min.js' %}"
+      type="text/javascript"
+    ></script>
+    <script src="{% static 'kit/js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <!--  Plugin for TypedJS, full documentation here: https://github.com/inorganik/CountUp.js -->
+    <script src="{% static 'kit/js/plugins/countup.min.js' %}"></script>
+    <!--  Plugin for Parallax, full documentation here: https://github.com/wagerfield/parallax  -->
+    <script src="{% static 'kit/js/plugins/parallax.min.js' %}"></script>
+    <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+    <script
+      src="{% static 'kit/js/material-kit.min.js' %}?v=3.0.4"
+      type="text/javascript"
+    ></script>
+
+    <script src="{% static 'front/js/plugins/smooth-scrollbar.min.js' %}"></script>
+    <!--cyborg scripts-->
+
+    <!-- Kanban scripts -->
+    <script src="{% static 'front/js/plugins/dragula/dragula.min.js' %}"></script>
+    <script src="{% static 'front/js/plugins/jkanban/jkanban.js' %}"></script>
+    <script src="{% static 'front/js/plugins/chartjs.min.js' %}"></script>
+    <script src="{% static 'front/js/plugins/world.js' %}"></script>
+    <script>
+      // get the element to animate
+      var element = document.getElementById("count-stats");
+      var elementHeight = element.clientHeight;
+
+      // listen for scroll event and call animate function
+
+      document.addEventListener("scroll", animate);
+
+      // check if element is in view
+      function inView() {
+        // get window height
+        var windowHeight = window.innerHeight;
+        // get number of pixels that the document is scrolled
+        var scrollY = window.scrollY || window.pageYOffset;
+        // get current scroll position (distance from the top of the page to the bottom of the current viewport)
+        var scrollPosition = scrollY + windowHeight;
+        // get element position (distance from the top of the page to the bottom of the element)
+        var elementPosition =
+          element.getBoundingClientRect().top + scrollY + elementHeight;
+
+        // is scroll position greater than element position? (is element in view?)
+        if (scrollPosition > elementPosition) {
+          return true;
+        }
+
+        return false;
+      }
+
+      var animateComplete = true;
+      // animate element when it is in view
+      function animate() {
+        // is element in view?
+        if (inView()) {
+          if (animateComplete) {
+            if (document.getElementById("state1")) {
+              const countUp = new CountUp(
+                "state1",
+                document.getElementById("state1").getAttribute("countTo")
+              );
+              if (!countUp.error) {
+                countUp.start();
+              } else {
+                console.error(countUp.error);
+              }
+            }
+            if (document.getElementById("state2")) {
+              const countUp1 = new CountUp(
+                "state2",
+                document.getElementById("state2").getAttribute("countTo")
+              );
+              if (!countUp1.error) {
+                countUp1.start();
+              } else {
+                console.error(countUp1.error);
+              }
+            }
+            if (document.getElementById("state3")) {
+              const countUp2 = new CountUp(
+                "state3",
+                document.getElementById("state3").getAttribute("countTo")
+              );
+              if (!countUp2.error) {
+                countUp2.start();
+              } else {
+                console.error(countUp2.error);
+              }
+            }
+            animateComplete = false;
+          }
+        }
+      }
+
+      if (document.getElementById("typed")) {
+        var typed = new Typed("#typed", {
+          stringsElement: "#typed-strings",
+          typeSpeed: 90,
+          backSpeed: 90,
+          backDelay: 200,
+          startDelay: 500,
+          loop: true,
+        });
+      }
+    </script>
+    <script>
+      if (document.getElementsByClassName("page-header")) {
+        window.onscroll = debounce(function () {
+          var scrollPosition = window.pageYOffset;
+          var bgParallax = document.querySelector(".page-header");
+          var oVal = window.scrollY / 3;
+          bgParallax.style.transform = "translate3d(0," + oVal + "px,0)";
+        }, 6);
+      }
+    </script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="{% static 'front/js/material-dashboard.min.js'%}?v=3.0.1"></script>
+
+    <!-- Flex Javascript -->
+  </body>
+</html>

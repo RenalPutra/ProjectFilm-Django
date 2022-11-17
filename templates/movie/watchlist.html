@@ -1,0 +1,120 @@
+{% extends "artikel/base_detail.html" %} {% load static %} {% block konten %}
+
+<div class="page-header min-vh-50 bgFull">
+  <span class="mask bg-gradient-dark opacity-6"></span>
+</div>
+
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  <div class="row mt-3">
+    <div class="row mt-5">
+      <div class="col-lg-12">
+        <div class="feature-banner header-text">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="">
+                <img src="#" alt="" style="border-radius: 23px" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Featured End ***** -->
+
+    <!-- ***** Details Start ***** -->
+    <div class="game-details min-vh-50">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th
+                    class="text-uppercase text-xxs font-weight-bolder opacity-7"
+                  >
+                    Gambar
+                  </th>
+
+                  <th
+                    class="text-uppercase text-xxs font-weight-bolder opacity-7"
+                  >
+                    Nama Film
+                  </th>
+
+                  <th
+                    class="text-center text-uppercase text-xxs font-weight-bolder opacity-7"
+                  >
+                    Date
+                  </th>
+                  <th
+                    class="text-center text-uppercase text-xxs font-weight-bolder opacity-7"
+                  >
+                    Rate
+                  </th>
+                  <th
+                    class="text-center text-uppercase text-xxs font-weight-bolder opacity-7"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for a in watch %}
+
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div>
+                        <img
+                          src="https://image.tmdb.org/t/p/w500{{a.gambar}}"
+                          class="avatar-xxl"
+                          alt="avatar image"
+                        />
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 font-weight-normal text-sm">
+                        {{a.judul}}
+                      </h6>
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <span class="badge badge-dot me-4">
+                      <i class="bg-info"></i>
+                      <span class="text-dark text-xs">{{a.date}}</span>
+                    </span>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 font-weight-normal text-sm">
+                        {{a.ratings}}
+                      </h6>
+                    </div>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <a
+                      class="btn btn-danger w-auto me-2"
+                      href="{% url 'delete_watchlist' a.id %}"
+                      >Delete</a
+                    >
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-12"></div>
+      </div>
+    </div>
+    <!-- ***** Details End ***** -->
+
+    <!-- ***** Other Start ***** -->
+  </div>
+</div>
+
+{% endblock konten %}

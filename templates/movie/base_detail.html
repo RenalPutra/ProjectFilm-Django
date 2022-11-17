@@ -1,0 +1,286 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="{% static 'kit/img/apple-icon.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'kit/img/favicon.png' %}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>BIG MOVIES</title>
+    <!--     Fonts and icons     -->
+
+    <!--agency-->
+    <link rel="stylesheet" href="{% static 'agency/css/fontawesome.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'agency/css/templatemo-tale-seo-agency.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'agency/css/owl.css' %}" />
+    <link rel="stylesheet" href="{% static 'agency/css/animate.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
+    />
+    <!-- Nucleo Icons -->
+    <link href="{% static 'kit/css/nucleo-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'kit/css/nucleo-svg.css' %}" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/42d5adcbca.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="{% static 'kit/css/material-kit.css' %}?v=3.0.4"
+      rel="stylesheet"
+    />
+
+    <link href="{% static 'kit/css/styleku.css' %}" rel="stylesheet" />
+
+    <!-- Flex Artikel -->
+  </head>
+
+  <body class="about-us bg-gray-200">
+    <nav
+      class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent"
+    >
+      <div class="container">
+        <a
+          class="navbar-brand text-white"
+          href="{% url 'main'%}"
+          rel="tooltip"
+          title="Designed and Coded by Creative Tim"
+          data-placement="bottom"
+          target="_blank"
+        >
+          <h2 class="text-dark">BIG MOVIES</h2>
+        </a>
+        <button
+          class="navbar-toggler shadow-none ms-2"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navigation"
+          aria-controls="navigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon mt-2">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </span>
+        </button>
+        <div
+          class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 md-lg-12 ps-lg-5"
+          id="navigation"
+        >
+          <ul class="navbar-nav navbar-nav-hover ms-auto">
+            <li class="nav-item dropdown dropdown-hover mx-2 ms-lg-6">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuPages8"
+                href="{% url 'main'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >dashboard</i
+                >
+                Home
+              </a>
+            </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuPages8"
+                href="{% url 'trending'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >star</i
+                >
+                Trending
+              </a>
+            </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuPages8"
+                href="{% url 'coming'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >movie</i
+                >
+                Coming
+              </a>
+            </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuPages8"
+                href="{% url 'top'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >stars</i
+                >
+                Top
+              </a>
+            </li>
+
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuBlocks"
+                href="{% url 'artikels'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >article</i
+                >
+                Article
+              </a>
+            </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuBlocks"
+                href="{% url 'about'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >info</i
+                >
+                About
+              </a>
+            </li>
+            {% if request.user.is_anonymous == False %}
+
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuBlocks"
+                href="{% url 'watchlist'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >queue</i
+                >
+                Watchlist
+              </a>
+            </li>
+
+            {% endif %} {% if request.user.is_anonymous %}
+
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuDocs"
+                href="{% url 'login'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >login</i
+                >
+                Login
+              </a>
+            </li>
+
+            {% else %}
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center text-dark"
+                id="dropdownMenuDocs"
+                href="{% url 'dashboard'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md text-dark"
+                  >person</i
+                >
+                {{user}}
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      <form method="post" action="{% url 'search' %} ">
+        {% csrf_token %}
+        <div class="row collapse navbar-collapse">
+          <div class="ms-md-auto d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label text-white">Searching Film</label>
+              <input
+                type="text"
+                name="movieName"
+                class="form-control text-white"
+              />
+            </div>
+          </div>
+        </div>
+        <button type="submit" hidden class="btn btn-white">Cari</button>
+      </form>
+    </nav>
+
+    {% block header %}{% endblock header %} {% block konten %}
+    <!---->
+    {% endblock konten%}
+
+    <!--   Core JS Files   -->
+
+    <!--agency JS-->
+
+    <script src="{% static 'vendor/jquery/jquery.min.js '%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+    <script src=" {% static 'agency/js/isotope.min.js '%}"></script>
+    <script src="{% static 'agency/js/owl-carousel.js'%}"></script>
+    <script src="{% static 'agency/js/tabs.js'%}"></script>
+    <script src="{% static 'agency/js/popup.js'%}"></script>
+    <script src="{% static 'agency/js/custom.js'%}"></script>
+
+    <script
+      src="{% static 'kit/js/core/popper.min.js' %}"
+      type="text/javascript"
+    ></script>
+    <script
+      src="{% static 'kit/js/core/bootstrap.min.js' %}"
+      type="text/javascript"
+    ></script>
+    <script src="{% static 'kit/js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <!--  Plugin for TypedJS, full documentation here: https://github.com/inorganik/CountUp.js -->
+    <script src="{% static 'kit/js/plugins/countup.min.js' %}"></script>
+    <!--  Plugin for Parallax, full documentation here: https://github.com/wagerfield/parallax  -->
+    <script src="{% static 'kit/js/plugins/parallax.min.js' %}"></script>
+    <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+    <script
+      src="{% static 'kit/js/material-kit.min.js' %}?v=3.0.4"
+      type="text/javascript"
+    ></script>
+
+    <!-- Flex Javascript -->
+  </body>
+</html>

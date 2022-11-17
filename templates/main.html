@@ -1,0 +1,29 @@
+{% extends "movie/base_detail.html" %} {% load static %} {% block konten %}
+<div class="main-banner" id="top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="caption header-text">
+          <h6>BIG MOVIES</h6>
+          <div class="line-dec"></div>
+          <h4>
+            cari <em>BIG MOVIES favoritemu</em> hanya di <span>BIG MOVIES</span>
+          </h4>
+          <p>
+            Dapatkan info menarik tentang dunia film, dan lihatlah
+            kumpulan-kumpulan film Trending, Up Coming dan Top hanya di BIG
+            MOVIES
+          </p>
+          <div class="main-button scroll-to-section">
+            <a href="{% url 'trending' %}">Let's Go</a>
+          </div>
+          <span>or</span>
+          <div class="second-button">
+            <a href="{% url 'login' %}">Sign in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock konten %}

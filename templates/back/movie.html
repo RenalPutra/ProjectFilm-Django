@@ -1,0 +1,75 @@
+{% extends 'back/baseAdmin.html' %} {% load static %} {% block konten %}
+<a class="btn btn-success w-auto m-5" href="{% url 'add' %}">+ Add Movie</a>
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mb-4">
+  <div class="table-responsive">
+    <table class="table align-items-center mb-0">
+      <thead>
+        <tr>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-7">
+            Judul
+          </th>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">
+            Overview
+          </th>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">
+            Genre
+          </th>
+          <th
+            class="text-center text-uppercase text-xxs font-weight-bolder opacity-7"
+          >
+            Rating
+          </th>
+          <th
+            class="text-center text-uppercase text-xxs font-weight-bolder opacity-7"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in movie %}
+
+        <tr>
+          <td>
+            <div class="d-flex px-2 py-1">
+              <div>
+                <img
+                  src="{{m.gambar}}"
+                  class="avatar avatar-sm me-3"
+                  alt="avatar image"
+                />
+              </div>
+              <div class="d-flex flex-column justify-content-center">
+                <h6 class="mb-0 font-weight-normal text-sm">{{m.judul}}</h6>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="text-sm font-weight-normal mb-0">{{m.overview}}</p>
+          </td>
+          <td>
+            <span class="badge badge-dot me-4">
+              <i class="bg-info"></i>
+              <span class="text-dark text-xs">{{m.genre}}</span>
+            </span>
+          </td>
+          <td class="align-middle text-center text-sm">
+            <p class="mb-0 font-weight-normal text-sm">{{m.rating}}</p>
+          </td>
+          <td class="align-middle text-center text-sm">
+            <a
+              class="btn btn-warning w-auto me-2"
+              href="{% url 'update' m.id %}"
+              >Update</a
+            >
+            <a class="btn btn-danger w-auto me-2" href="{% url 'delete' m.id %}"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock konten %}

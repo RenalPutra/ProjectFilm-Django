@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {% load static %} {% block header %}
+<div class="col-lg-8 text-center mx-auto my-auto">
+  <h1 class="text-white">Searching Film</h1>
+</div>
+
+{% endblock header %} {% block konten %}
+
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  <div class="row mt-5">
+    {% for d in data %}
+
+    <div class="col-lg-3 col-md-6 pt-5">
+      <div class="card" data-animation="true">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <a class="d-block blur-shadow-image">
+            <img
+              src="https://image.tmdb.org/t/p/w500{{d.poster_path}}"
+              alt="img-blur-shadow"
+              class="img-fluid shadow border-radius-lg"
+              style="height: 800px"
+            />
+          </a>
+          <div
+            class="colored-shadow"
+            style="background-image: url('https://image.tmdb.org/t/p/w500{{d.poster_path}}')"
+          ></div>
+        </div>
+        <div class="card-body text-center">
+          {% if request.user.is_anonymous %}
+
+          <div class="d-flex mt-n6 mx-auto">
+            <a
+              class="btn btn-link text-primary ms-auto border-0"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Refresh"
+            >
+              <i class="material-icons text-lg">star</i>
+            </a>
+            <button
+              class="btn btn-link text-info me-auto border-0"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              title="Edit"
+            >
+              <i class="material-icons text-lg">star</i>
+            </button>
+          </div>
+          {% else %}
+          <div class="d-flex mt-n6 mx-auto">
+            <form
+              action="{% url 'watchlist_search' forloop.counter0 %}"
+              method="post"
+              class="mx-auto"
+            >
+              {% csrf_token %}
+
+              <button
+                class="btn btn-link text-info border-0 text-danger mx-auto"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Edit"
+              >
+                <i class="material-icons text-lg text-danger">queue</i>
+                Add to watchlist
+              </button>
+            </form>
+          </div>
+          {% endif %}
+          <h5 class="font-weight-normal mt-3">
+            <a href="{% url 'detail_search' forloop.counter0 %}"
+              >{{d.original_title}}</a
+            >
+          </h5>
+          <p
+            class="mb-0"
+            style="
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            "
+          >
+            {{d.overview}}
+          </p>
+        </div>
+        <hr class="dark horizontal my-0" />
+        <div class="card-footer d-flex">
+          <p class="font-weight-normal my-auto">{{d.release_date}}</p>
+          <i
+            class="material-icons position-relative ms-auto text-lg me-1 my-auto"
+          ></i>
+          <p class="text-sm my-auto">Ratings : {{d.popularity}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock konten%}

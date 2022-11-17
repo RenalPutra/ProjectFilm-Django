@@ -1,0 +1,74 @@
+{% extends 'back/baseAdmin.html' %} {% load static %} {% block konten %}
+<div class="w-auto m-5"></div>
+<div class="card card-body blur shadow-blur mx-3">
+  <div class="table-responsive">
+    <table class="table align-items-center mb-0">
+      <thead>
+        <tr>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-10">
+            NO
+          </th>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-10">
+            Username
+          </th>
+          <th class="text-uppercase text-xxs font-weight-bolder opacity-10">
+            Email
+          </th>
+          <th
+            class="text-center text-uppercase text-xxs font-weight-bolder opacity-10"
+          >
+            First Name
+          </th>
+          <th
+            class="text-center text-uppercase text-xxs font-weight-bolder opacity-10"
+          >
+            Last Name
+          </th>
+          <th
+            class="text-center text-uppercase text-xxs font-weight-bolder opacity-10"
+          >
+            Status
+          </th>
+          <th
+            class="text-center text-uppercase text-xxs font-weight-bolder opacity-10"
+          >
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in see %}
+
+        <tr>
+          <td>
+            <div class="d-flex px-2 py-1">{{forloop.counter}}</div>
+          </td>
+          <td>
+            <div class="d-flex flex-column justify-content-center">
+              <h6 class="mb-0 font-weight-normal text-sm">{{s.username}}</h6>
+            </div>
+          </td>
+
+          <td>{{s.email}}</td>
+          <td class="text-center">{{s.first_name}}</td>
+          <td class="text-center">{{s.last_name}}</td>
+          {% if s.is_staff == True %}
+          <td class="text-center">Admin</td>
+          {% else %}
+          <td class="text-center">User</td>
+
+          {% endif %}
+          <td class="align-middle text-center text-sm">
+            <a
+              class="btn btn-danger w-auto me-2"
+              href="{% url 'deleteUser' s.id %}"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock konten %}
