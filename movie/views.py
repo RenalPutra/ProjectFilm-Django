@@ -135,7 +135,7 @@ def add_Artikel(request):
         )
         return redirect(table_Artikel)
     
-   
+    
     
     return render (request, template_name)
 
@@ -160,7 +160,7 @@ def edit_Artikel(request, id):
         get_artikel.judul = input_judul
         get_artikel.deskripsi = input_overview
         get_artikel.gambar = input_gambar
-        
+        get_artikel.save()
         return redirect(table_Artikel)
     
     context = {

@@ -11,22 +11,129 @@ from django.db import transaction
 import requests
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
-def trending(request):
-    template_name = "movie/trending.html"
-   
-    
+
+def sinkron_trending(request):
     URL = "https://api.themoviedb.org/3/movie/popular?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
     
     r = requests.get(url = URL)
     
     data = r.json()
     
+    for d in data['results']:
+        cek_tren = Trending_film.objects.filter(idtren=d['id'])
+        if cek_tren.exists():
+            trendy = cek_tren.first()
+            trendy.idtren = d['id']
+            trendy.adult = d['adult']
+            trendy.languages = d['original_language']
+            trendy.title = d['original_title']
+            trendy.overview = d['overview']
+            trendy.poster = "https://image.tmdb.org/t/p/w500%s" %d['poster_path']
+            trendy.release = d['release_date']
+            trendy.vote = d['vote_average']
+            trendy.save()
+        else:
+            Trending_film.objects.create(
+                idtren = d['id'],
+                adult = d['adult'],
+                languages = d['original_language'],
+                title = d['original_title'],
+                overview = d['overview'],
+                poster =  "https://image.tmdb.org/t/p/w500%s" %d['poster_path'],
+                release = d['release_date'],
+                vote = d['vote_average']
+                
+            )
+    return HttpResponse("<h1>Berhasil connect API</h1>")
+            
+def sinkron_top(request):
+    URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
+    
+    r = requests.get(url = URL)
+    
+    data = r.json()
+    
+    for d in data['results']:
+        cek_top = top_film.objects.filter(idtop=d['id'])
+        if cek_top.exists():
+            top = cek_top.first()
+            top.idtren = d['id']
+            top.adult = d['adult']
+            top.languages = d['original_language']
+            top.title = d['original_title']
+            top.overview = d['overview']
+            top.poster = "https://image.tmdb.org/t/p/w500%s" %d['poster_path']
+            top.release = d['release_date']
+            top.vote = d['vote_average']
+            top.save()
+        else:
+            top_film.objects.create(
+                idtop = d['id'],
+                adult = d['adult'],
+                languages = d['original_language'],
+                title = d['original_title'],
+                overview = d['overview'],
+                poster =  "https://image.tmdb.org/t/p/w500%s" %d['poster_path'],
+                release = d['release_date'],
+                vote = d['vote_average']
+                
+            )
+    return HttpResponse("<h1>Berhasil connect API</h1>")
+            
+def sinkron_coming(request):
+    URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
+    
+    r = requests.get(url = URL)
+    
+    data = r.json()
+    
+    for d in data['results']:
+        cek_com = coming_film.objects.filter(idcom=d['id'])
+        if cek_com.exists():
+            com = cek_com.first()
+            com.idtren = d['id']
+            com.adult = d['adult']
+            com.languages = d['original_language']
+            com.title = d['original_title']
+            com.overview = d['overview']
+            com.poster = "https://image.tmdb.org/t/p/w500%s" %d['poster_path']
+            com.release = d['release_date']
+            com.vote = d['vote_average']
+            com.save()
+        else:
+            coming_film.objects.create(
+                idcom = d['id'],
+                adult = d['adult'],
+                languages = d['original_language'],
+                title = d['original_title'],
+                overview = d['overview'],
+                poster =  "https://image.tmdb.org/t/p/w500%s" %d['poster_path'],
+                release = d['release_date'],
+                vote = d['vote_average']
+                
+            )
+    return HttpResponse("<h1>Berhasil connect API</h1>")
+            
+            
+ 
+def trending(request):
+    template_name = "movie/trending.html"
+    
+    
+    data = Trending_film.objects.all()
+    
+    p = Paginator(Trending_film.objects.all(), 20)
+    page = request.GET.get('page')
+    artis =p.get_page(page)
+    
     context ={
-       
-        "data" : data["results"]
+       "artis" : artis,
+        "data" : data
     }
     return render(request, template_name, context)
+    
 
 def detail_trending(request, id):
     template_name = "movie/detail_trending.html"
@@ -51,17 +158,15 @@ def detail_trending(request, id):
 
 def top(request):
     template_name = "movie/top.html"
-   
+    data = top_film.objects.all()
     
-    URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
-    
-    r = requests.get(url = URL)
-    
-    data = r.json()
+    p = Paginator(top_film.objects.all(), 20)
+    page = request.GET.get('page')
+    artis =p.get_page(page)
     
     context ={
-       
-        "data" : data["results"]
+       "artis" : artis,
+        "data" : data
     }
     return render(request, template_name, context)
 
@@ -89,15 +194,15 @@ def coming(request):
     template_name = "movie/coming.html"
    
     
-    URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
+    data = coming_film.objects.all()
     
-    r = requests.get(url = URL)
-    
-    data = r.json()
+    p = Paginator(coming_film.objects.all(), 20)
+    page = request.GET.get('page')
+    artis =p.get_page(page)
     
     context ={
-       
-        "data" : data["results"]
+       "artis" : artis,
+        "data" : data
     }
     return render(request, template_name, context)
 
@@ -393,5 +498,15 @@ def deleteWatch(request, id):
     
     return redirect(watchlist_view)
     
+    
+
+
+# Save API to databse
+# def sinkron_trending(request):
+#     URL = "https://api.themoviedb.org/3/movie/popular?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
+    
+#     r = requests.get(url = URL)
+    
+#     data = r.json()
     
     

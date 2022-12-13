@@ -52,22 +52,40 @@
             </div>
           </td>
           <td>
-            <div class="d-flex flex-column justify-content-center">
+            <div
+              class="d-flex flex-column justify-content-center"
+              style="
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                hyphens: auto;
+                max-width: 200px;
+              "
+            >
               <h6 class="mb-0 font-weight-normal text-sm">{{a.judul}}</h6>
             </div>
           </td>
 
           <td>
-            <p
-              class="text-sm font-weight-normal mb-0"
+            <div
               style="
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
                 overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                hyphens: auto;
+                max-width: 300px;
               "
             >
-              {{a.deskripsi}}
-            </p>
+              <p class="text-sm font-weight-normal mb-0">
+                {{a.deskripsi |safe}}
+              </p>
+            </div>
           </td>
           <td class="text-center">
             <span class="badge badge-dot me-4">

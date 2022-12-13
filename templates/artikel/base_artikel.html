@@ -90,7 +90,7 @@
           </span>
         </button>
         <div
-          class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5"
+          class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 md-lg-12 ps-lg-5"
           id="navigation"
         >
           <ul class="navbar-nav navbar-nav-hover ms-auto">
@@ -155,7 +155,20 @@
                 About
               </a>
             </li>
-            {% if request.user.is_anonymous %}
+            {% if request.user.is_anonymous == False %}
+
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a
+                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                id="dropdownMenuBlocks"
+                href="{% url 'watchlist'%}"
+              >
+                <i class="material-icons opacity-6 me-2 text-md">queue</i>
+                Watchlist
+              </a>
+            </li>
+
+            {% endif %} {% if request.user.is_anonymous %}
 
             <li class="nav-item dropdown dropdown-hover mx-2">
               <a

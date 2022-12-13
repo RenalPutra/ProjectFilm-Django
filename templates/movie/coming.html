@@ -7,15 +7,15 @@
 {% endblock header %} {% block konten %}
 
 <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
-  <div class="row mt-5">
-    {% for d in data %}
+  <div class="row mt-5 justify-content-center">
+    {% for d in artis %}
 
     <div class="col-lg-3 col-md-6 pt-5">
       <div class="card" data-animation="true">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
           <a class="d-block blur-shadow-image">
             <img
-              src="https://image.tmdb.org/t/p/w500{{d.poster_path}}"
+              src="{{d.poster}}"
               alt="img-blur-shadow"
               class="img-fluid shadow border-radius-lg"
               style="height: 800px"
@@ -23,7 +23,7 @@
           </a>
           <div
             class="colored-shadow"
-            style="background-image: url('https://image.tmdb.org/t/p/w500{{d.poster_path}}')"
+            style="background-image: url('{{d.poster}}')"
           ></div>
         </div>
         <div class="card-body text-center">
@@ -69,9 +69,7 @@
           </div>
           {% endif %}
           <h5 class="font-weight-normal mt-3">
-            <a href="{% url 'detail_coming' forloop.counter0 %}"
-              >{{d.original_title}}</a
-            >
+            <a href="{% url 'detail_coming' forloop.counter0 %}">{{d.title}}</a>
           </h5>
           <p
             class="mb-0"

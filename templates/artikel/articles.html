@@ -28,7 +28,7 @@
         </p>
       </div>
       <div class="row">
-        {% for a in artikel_view %}
+        {% for a in pager %}
 
         <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 mt-5">
           <div class="card card-blog card-plain">
@@ -38,6 +38,15 @@
                   src="{{a.gambar}}"
                   alt="img-blur-shadow"
                   class="img-fluid shadow border-radius-xl"
+                  style="
+                    background-size: cover;
+                    object-fit: cover;
+                    object-position: center;
+                    background-repeat: no-repeat;
+                    max-height: 200px;
+                    height: 200px;
+                    width: 100%;
+                  "
                 />
               </a>
             </div>
@@ -55,8 +64,7 @@
                   {{a.judul}}
                 </h5>
               </a>
-              <p
-                class="mb-4 text-sm"
+              <div
                 style="
                   display: -webkit-box;
                   -webkit-line-clamp: 3;
@@ -64,8 +72,8 @@
                   overflow: hidden;
                 "
               >
-                {{a.deskripsi}}
-              </p>
+                <p class="mb-4 text-sm">{{a.deskripsi | safe}}</p>
+              </div>
               <div class="d-flex align-items-center justify-content-between">
                 <button
                   type="button"
@@ -81,6 +89,44 @@
           </div>
         </div>
         {% endfor %}
+        <nav aria-label="...">
+          <ul class="pagination justify-content-center">
+            {% if pager.has_previous %}
+
+            <li class="page-item">
+              <a class="page-link" href="?page=1">&laquo</a>
+            </li>
+
+            <li class="page-item">
+              <a class="page-link" href="?page={{pager.previous_page_number}}"
+                >prev</a
+              >
+            </li>
+
+            {% endif %} {% for i in nums %}
+
+            <li class="page-item">
+              <a class="page-link" href="?page={{forloop.counter}}"
+                >{{forloop.counter}}</a
+              >
+            </li>
+
+            {% endfor %} {% if pager.has_next %}
+
+            <li class="page-item">
+              <a class="page-link" href="?page={{pager.next_page_number}}"
+                >next</a
+              >
+            </li>
+
+            <li class="page-item">
+              <a class="page-link" href="?page={{pager.paginator.num_pages}}"
+                >&raquo</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
