@@ -13,7 +13,7 @@ class TableMovie(models.Model):
     
     class Meta:
         verbose_name_plural = 'Movie'
-
+ 
 class Trending_film(models.Model):
     idtren = models.CharField(max_length=200, blank=True, null=True)
     title = models.CharField(max_length=225)

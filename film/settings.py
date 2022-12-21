@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     "movie",
     "user",
     "articles",
-    "watchlist"
+    "watchlist",
+    "taggit",
+    "crispy_forms",
+    "django_social_share"
 ]
 
 MIDDLEWARE = [
