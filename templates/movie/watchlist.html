@@ -1,8 +1,10 @@
-{% extends "artikel/base_detail.html" %} {% load static %} {% block konten %}
-
-<div class="page-header min-vh-50 bgFull">
-  <span class="mask bg-gradient-dark opacity-6"></span>
+{% extends "base.html" %} {% load static %} {% block header %}
+<div class="col-lg-8 text-center mx-auto my-auto">
+  <h1 class="text-white">Whatchlist Film</h1>
+  <p class="lead mb-4 text-white opacity-8">whislist Kamu Akan Masuk Di sini</p>
 </div>
+
+{% endblock header %} {% block konten %}
 
 <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
   <div class="row mt-3">
@@ -66,7 +68,7 @@
                     <div class="d-flex px-2 py-1">
                       <div>
                         <img
-                          src="https://image.tmdb.org/t/p/w500{{a.gambar}}"
+                          src="{{a.gambar}}"
                           class="avatar-xxl"
                           alt="avatar image"
                         />

@@ -21,3 +21,8 @@ class ComingMovie(admin.ModelAdmin):
     list_display = ["title", "overview", "adult", "languages", 'release', 'poster', 'vote']
 
 admin.site.register(coming_film,ComingMovie )
+
+class SearchingMovie(admin.ModelAdmin):
+    list_display = ["title", "overview", "adult", "languages", 'release', 'poster', 'vote']
+
+admin.site.register(searching_film,SearchingMovie )

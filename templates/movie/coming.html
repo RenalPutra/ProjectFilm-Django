@@ -50,7 +50,7 @@
           {% else %}
           <div class="d-flex mt-n6 mx-auto">
             <form
-              action="{% url 'watchlist_com' forloop.counter0 %}"
+              action="{% url 'watchlist_com' d.idcom %}"
               method="post"
               class="mx-auto"
             >
@@ -69,7 +69,7 @@
           </div>
           {% endif %}
           <h5 class="font-weight-normal mt-3">
-            <a href="{% url 'detail_coming' forloop.counter0 %}">{{d.title}}</a>
+            <a href="{% url 'detail_coming' d.idcom %}">{{d.title}}</a>
           </h5>
           <p
             class="mb-0"
@@ -85,11 +85,11 @@
         </div>
         <hr class="dark horizontal my-0" />
         <div class="card-footer d-flex">
-          <p class="font-weight-normal my-auto">{{d.release_date}}</p>
+          <p class="font-weight-normal my-auto">{{d.release}}</p>
           <i
             class="material-icons position-relative ms-auto text-lg me-1 my-auto"
           ></i>
-          <p class="text-sm my-auto">Ratings : {{d.popularity}}</p>
+          <p class="text-sm my-auto">Ratings : {{d.vote}}</p>
         </div>
       </div>
     </div>

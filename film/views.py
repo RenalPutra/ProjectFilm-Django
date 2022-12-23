@@ -59,7 +59,7 @@ def sinkron_top(request):
         cek_top = top_film.objects.filter(idtop=d['id'])
         if cek_top.exists():
             top = cek_top.first()
-            top.idtren = d['id']
+            top.idtop = d['id']
             top.adult = d['adult']
             top.languages = d['original_language']
             top.title = d['original_title']
@@ -93,7 +93,7 @@ def sinkron_coming(request):
         cek_com = coming_film.objects.filter(idcom=d['id'])
         if cek_com.exists():
             com = cek_com.first()
-            com.idtren = d['id']
+            com.idcom = d['id']
             com.adult = d['adult']
             com.languages = d['original_language']
             com.title = d['original_title']
@@ -139,20 +139,12 @@ def detail_trending(request, id):
     template_name = "movie/detail_trending.html"
    
     
-    URL = "https://api.themoviedb.org/3/movie/popular?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
-    
-    r = requests.get(url = URL)
-    
-    data = r.json()
-    
-    hasil = data['results']
-    
-    detail = hasil[id]
+    detail = Trending_film.objects.filter(idtren=id)
     
     context ={
        
-        "data" : detail,
-        "data2" : hasil
+        "data" : detail[0],
+
     }
     return render(request, template_name, context)
 
@@ -173,21 +165,12 @@ def top(request):
 def detail_top(request, id):
     template_name = "movie/detail_top.html"
    
-    
-    URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
-    
-    r = requests.get(url = URL)
-    
-    data = r.json()
-    
-    hasil = data['results']
-    
-    detail = hasil[id]
+    detail = top_film.objects.filter(idtop=id)
     
     context ={
        
-        "data" : detail,
-        "data2" : hasil
+        "data" : detail[0],
+ 
     }
     return render(request, template_name, context)
 def coming(request):
@@ -210,20 +193,12 @@ def detail_coming(request, id):
     template_name = "movie/detail_coming.html"
    
     
-    URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
-    
-    r = requests.get(url = URL)
-    
-    data = r.json()
-    
-    hasil = data['results']
-    
-    detail = hasil[id]
+    detail = coming_film.objects.filter(idcom=id)
     
     context ={
        
-        "data" : detail,
-        "data2" : hasil
+        "data" : detail[0],
+
     }
     return render(request, template_name, context)
 
@@ -237,11 +212,37 @@ def searchMovie(request):
     r = requests.get(url = URL)
     
     data = r.json()
-   
+    
+    for d in data['results']:
+        cek_search = searching_film.objects.filter(idsearch=d['id'])
+        if cek_search.exists():
+            search = cek_search.first()
+            search.idsearch = d['id']
+            search.adult = d['adult']
+            search.languages = d['original_language']
+            search.title = d['original_title']
+            search.overview = d['overview']
+            search.poster = "https://image.tmdb.org/t/p/w500%s" %d['poster_path']
+            search.release = d['release_date']
+            search.vote = d['vote_average']
+            search.save()
+        else:
+            searching_film.objects.create(
+                idsearch = d['id'],
+                adult = d['adult'],
+                languages = d['original_language'],
+                title = d['original_title'],
+                overview = d['overview'],
+                poster =  "https://image.tmdb.org/t/p/w500%s" %d['poster_path'],
+                release = d['release_date'],
+                vote = d['vote_average']
+                
+            )
+    data = searching_film.objects.filter(title__contains=movieName)
     
     context ={
        
-        "data" : data["results"],
+        "data" : data,
         
     }
     return render(request, template_name, context)
@@ -250,20 +251,10 @@ def detail_search(request, id):
     template_name = "movie/detail_search.html"
     
     
-
-    URL = "https://api.themoviedb.org/3/search/movie?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae&query={}".format(movieName)
-    r = requests.get(url = URL)
-    
-    data = r.json()
-    
-    hasil = data['results']
-    
-    detail = hasil[id]
+    detail = searching_film.objects.filter(idsearch=id)
     
     context ={
-       
-        "data" : data["results"],
-        "detail" : detail
+        "data" : detail[0]
     }
     return render(request, template_name, context)
 
@@ -366,21 +357,13 @@ def watchlist_view(request):
 @login_required
 def addWatchlist_trending(request, id):
     
-    URL = "https://api.themoviedb.org/3/movie/popular?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
-    
-    r = requests.get(url = URL)
-    
-    data = r.json()
-    
-    hasil = data['results']
-    
-    detail = hasil[id]
+    detail = Trending_film.objects.filter(idtren=id)
     
     if request.method == 'POST':  
-        get_judul = detail["original_title"]
-        get_rate = detail["popularity"]
-        get_date = detail["release_date"]
-        get_gambar = detail["poster_path"]
+        get_judul = detail[0].title
+        get_rate = detail[0].vote
+        get_date = detail[0].release
+        get_gambar = detail[0].poster
         nama = request.user
         
         WatchlistMovie.objects.create(
@@ -398,21 +381,13 @@ def addWatchlist_trending(request, id):
 @login_required
 def addWatchlist_top(request, id):
     
-    URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
-    
-    r = requests.get(url = URL)
-    
-    data = r.json()
-    
-    hasil = data['results']
-    
-    detail = hasil[id]
+    detail = top_film.objects.filter(idtop=id)
     
     if request.method == 'POST':  
-        get_judul = detail["original_title"]
-        get_rate = detail["popularity"]
-        get_date = detail["release_date"]
-        get_gambar = detail["poster_path"]
+        get_judul = detail[0].title
+        get_rate = detail[0].vote
+        get_date = detail[0].release
+        get_gambar = detail[0].poster
         nama = request.user
         
         WatchlistMovie.objects.create(
@@ -430,21 +405,13 @@ def addWatchlist_top(request, id):
 @login_required
 def addWatchlist_coming(request, id):
     
-    URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae"
-    
-    r = requests.get(url = URL)
-    
-    data = r.json()
-    
-    hasil = data['results']
-    
-    detail = hasil[id]
+    detail = coming_film.objects.filter(idcom=id)
     
     if request.method == 'POST':  
-        get_judul = detail["original_title"]
-        get_rate = detail["popularity"]
-        get_date = detail["release_date"]
-        get_gambar = detail["poster_path"]
+        get_judul = detail[0].title
+        get_rate = detail[0].vote
+        get_date = detail[0].release
+        get_gambar = detail[0].poster
         nama = request.user
         
         WatchlistMovie.objects.create(
@@ -462,21 +429,13 @@ def addWatchlist_coming(request, id):
 @login_required
 def addWatchlist_search(request, id):
     
-    URL = "https://api.themoviedb.org/3/search/movie?api_key=9fa77e745db8ea3baef75ce5c9cfc0ae&query={}".format(movieName)
-    
-    r = requests.get(url = URL)
-    
-    data = r.json()
-    
-    hasil = data['results']
-    
-    detail = hasil[id]
+    detail = searching_film.objects.filter(idsearch=id)
     
     if request.method == 'POST':  
-        get_judul = detail["original_title"]
-        get_rate = detail["popularity"]
-        get_date = detail["release_date"]
-        get_gambar = detail["poster_path"]
+        get_judul = detail[0].title
+        get_rate = detail[0].vote
+        get_date = detail[0].release
+        get_gambar = detail[0].poster
         nama = request.user
         
         WatchlistMovie.objects.create(

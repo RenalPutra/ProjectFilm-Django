@@ -43,3 +43,13 @@ class coming_film(models.Model):
     release = models.CharField(max_length=200)
     poster = models.CharField(max_length=200)
     vote = models.CharField(max_length=200)
+
+class searching_film(models.Model):
+    idsearch = models.CharField(max_length=200, blank=True, null=True)
+    title = models.CharField(max_length=225)
+    overview = models.TextField()
+    adult = models.CharField(max_length=225)
+    languages = models.CharField(max_length=200)
+    release = models.CharField(max_length=200)
+    poster = models.CharField(max_length=200)
+    vote = models.CharField(max_length=200)

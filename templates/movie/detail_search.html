@@ -12,35 +12,35 @@
           <div class="col-lg-3">
             <div
               class="anime__details__pic set-bg"
-              style="background-image: url(https://image.tmdb.org/t/p/w500{{detail.poster_path}}); background-size:cover; background-repeat: no-repeat; object-fit:cover; object-position:center;height: 500px;"
+              style="background-image: url({{data.poster}}); background-size:cover; background-repeat: no-repeat; object-fit:cover; object-position:center;height: 500px;"
             ></div>
           </div>
           <div class="col-lg-9">
             <div class="anime__details__text">
               <div class="anime__details__title">
-                <h3 class="text-dark">{{detail.original_title}}</h3>
-                <span>{{detail.original_title}}</span>
+                <h3 class="text-dark">{{data.title}}</h3>
+                <span>{{data.title}}</span>
               </div>
-              <p class="text-dark">{{detail.overview}}</p>
+              <p class="text-dark">{{data.overview}}</p>
               <div class="anime__details__widget">
                 <div class="row">
                   <div class="col-lg-6 col-md-6">
                     <ul>
                       <li class="text-dark">
-                        <span>Adult:</span> {{detail.adult}}
+                        <span>Adult:</span> {{data.adult}}
                       </li>
                       <li class="text-dark">
-                        <span>Language:</span> {{detail.original_language}}
+                        <span>Language:</span> {{data.languages}}
                       </li>
                     </ul>
                   </div>
                   <div class="col-lg-6 col-md-6">
                     <ul>
                       <li class="text-dark">
-                        <span>Scores:</span> {{detail.vote_average}}
+                        <span>Scores:</span> {{data.vote}}
                       </li>
                       <li class="text-dark">
-                        <span>Date aired:</span>{{detail.release_date}}
+                        <span>Date aired:</span>{{data.release}}
                       </li>
                     </ul>
                   </div>
